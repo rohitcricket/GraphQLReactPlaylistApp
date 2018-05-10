@@ -14,7 +14,7 @@ var books = [
 	{ name: "Decisions with Bets", genre: "Business", id: "3", authorId: "3" },
 	{ name: "The Fountainhead", genre: "Fiction", id: "4", authorId: "1" },
 	{ name: "OPAR: The philosophy of Ayn Rand", genre: "Non-Fiction", id: "5", authorId: "2" },
-	{ name: "The Fountainhead", genre: "Fiction", id: "4", authorId: "1" }
+	{ name: "We The Living", genre: "Fiction", id: "4", authorId: "1" }
 ];
 
 var authors = [
@@ -75,6 +75,18 @@ const RootQuery = new GraphQLObjectType({
 			args: { id: { type: GraphQLID } },
 			resolve(parent, args) {
 				return _.find(authors, { id: args.id });
+			}
+		},
+		books: {
+			type: GraphQLList(BookType),
+			resolve(parent, args) {
+				return books;
+			}
+		},
+		authors: {
+			type: GraphQLList(AuthorType),
+			resolve(parent, args) {
+				return authors;
 			}
 		}
 	}
